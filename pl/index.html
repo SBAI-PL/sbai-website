@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>SBAI – Smart Business AI</title>
+  <meta name="description" content="SBAI doradza i wdraża production AI dla firm, które chcą działającego wyniku, a nie kolejnego demo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://sbai.pl/pl/">
+  <link rel="alternate" hreflang="en" href="https://sbai.pl/">
+  <link rel="alternate" hreflang="pl" href="https://sbai.pl/pl/">
+  <link rel="alternate" hreflang="x-default" href="https://sbai.pl/">
+  <link rel="stylesheet" href="../styles.css">
+  <script>
+    const SITE_VERSION = '2024-07-09';
+    window.SITE_VERSION = SITE_VERSION;
+
+    (function () {
+      const VERSION_KEY = 'siteVersion';
+      const LANGUAGE_KEY = 'preferredLanguage';
+      const SUPPORTED_LANGUAGES = new Set(['en', 'pl']);
+      const TARGETS = { en: '/', pl: '/pl/' };
+
+      const safeStorage = (callback) => {
+        try {
+          return callback();
+        } catch (error) {
+          return null;
+        }
+      };
+
+      const normalizeLanguage = (value) => {
+        if (typeof value !== 'string') {
+          return '';
+        }
+
+        const lowered = value.toLowerCase();
+        if (SUPPORTED_LANGUAGES.has(lowered)) {
+          return lowered;
+        }
+
+        const [prefix] = lowered.split(/[-_]/);
+        return SUPPORTED_LANGUAGES.has(prefix) ? prefix : '';
+      };
+
+      const storedVersion = safeStorage(() => window.localStorage.getItem(VERSION_KEY));
+      if (storedVersion && storedVersion !== SITE_VERSION) {
+        safeStorage(() => {
+          window.localStorage.removeItem(LANGUAGE_KEY);
+        });
+      }
+
+      safeStorage(() => {
+        window.localStorage.setItem(VERSION_KEY, SITE_VERSION);
+      });
+
+      const storedLanguage = normalizeLanguage(
+        safeStorage(() => window.localStorage.getItem(LANGUAGE_KEY)),
+      );
+
+      const browserLanguage = normalizeLanguage(
+        navigator.language || navigator.userLanguage,
+      );
+
+      const setLanguage = (lang) => {
+        const normalized = normalizeLanguage(lang) || 'en';
+        safeStorage(() => {
+          window.localStorage.setItem(LANGUAGE_KEY, normalized);
+        });
+
+        const targetUrl = new URL(
+          TARGETS[normalized] || TARGETS.en,
+          window.location.origin,
+        );
+
+        if (window.location.pathname !== targetUrl.pathname) {
+          window.location.href = targetUrl.toString();
+        }
+      };
+
+      window.setLanguage = setLanguage;
+
+      const path = window.location.pathname;
+      const isRootRoute = path === '/' || path === '/index.html';
+      const isPolishRoute = path === '/pl' || path === '/pl/' || path.startsWith('/pl/');
+
+      if (isRootRoute) {
+        if (storedLanguage === 'pl') {
+          window.location.replace(TARGETS.pl);
+          return;
+        }
+
+        if (!storedLanguage && browserLanguage === 'pl') {
+          window.location.replace(TARGETS.pl);
+          return;
+        }
+      }
+
+      if (isPolishRoute && storedLanguage === 'en') {
+        window.location.replace(TARGETS.en);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#hero-title">Przejdź do głównej treści</a>
+  <header class="site-header" role="banner">
+    <div class="container header-content">
+      <a class="brand" href="#hero" aria-label="SBAI Home">
+        <img src="../assets/sbai_logo.svg" alt="SBAI logo" class="brand-logo">
+      </a>
+      <div class="language-switch language-switch--mobile" aria-label="Wybierz język">
+        <a href="/" onclick="setLanguage('en'); return false;" aria-label="Switch to English">
+          <img src="../assets/flags/gb.svg" alt="English" width="24" height="16" loading="lazy" decoding="async">
+          <span class="sr-only">English</span>
+        </a>
+        <a href="/pl/" onclick="setLanguage('pl'); return false;" aria-label="Przełącz na polski">
+          <img src="../assets/flags/pl.svg" alt="Polski" width="24" height="16" loading="lazy" decoding="async">
+          <span class="sr-only">Polski</span>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="nav-desktop" aria-label="Primary" id="primary-menu">
+        <ul class="nav-list">
+          <li><a href="#what-we-do">Co robimy</a></li>
+          <li><a href="#why-choose-us">Dlaczego my</a></li>
+          <li><a href="#technology">Technologia</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+        <div class="language-switch language-switch--desktop" aria-label="Wybierz język">
+          <a href="/" onclick="setLanguage('en'); return false;" aria-label="Switch to English">
+            <img src="../assets/flags/gb.svg" alt="English" width="24" height="16" loading="lazy" decoding="async">
+            <span class="sr-only">English</span>
+          </a>
+          <a href="/pl/" onclick="setLanguage('pl'); return false;" aria-label="Przełącz na polski">
+            <img src="../assets/flags/pl.svg" alt="Polski" width="24" height="16" loading="lazy" decoding="async">
+            <span class="sr-only">Polski</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" tabindex="-1">
+    <!-- Hero Section with inline Pillars below CTAs -->
+    <section id="hero" class="hero" aria-label="Hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <h1 id="hero-title" class="hero-title" tabindex="-1">AI, które działa.<br>Zespół, który umie.</h1>
+        <div class="hero-ctas">
+          <a class="btn btn-hero" href="#contact">Porozmawiajmy 30 min</a>
+        </div>
+      </div>
+
+      <!-- Three Key Pillars positioned directly under CTAs, aligned to container -->
+      <section id="pillars" class="pillars" aria-label="Three Key Pillars">
+        <div class="container">
+          <div class="pillars-grid">
+            <article class="pillar-card">
+              <h3 class="pillar-card-title">Audyt i strategia AI</h3>
+              <p class="pillar-card-text">Sprawdzamy, gdzie AI daje realną dźwignię, jakie dane i integracje są potrzebne oraz czego nie warto automatyzować.</p>
+            </article>
+            <article class="pillar-card">
+              <h3 class="pillar-card-title">Production AI builds</h3>
+              <p class="pillar-card-text">Agenci, RAG, OCR, search, mail boty i automatyzacje procesów dostarczane z guardrails, monitoringiem i przekazaniem zespołowi.</p>
+            </article>
+            <article class="pillar-card">
+              <h3 class="pillar-card-title">Adopcja w zespole</h3>
+              <p class="pillar-card-text">Zostawiamy zespół, który rozumie system, potrafi go obsłużyć i wie, jak rozwijać go dalej.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- What We Can Do -->
+      <section id="what-we-do" class="what-we-do section" aria-label="What We Can Do">
+        <div class="container">
+          <header class="section-header">
+            <h2>Co możemy dla Ciebie zrobić</h2>
+            <p class="section-intro"></p>
+          </header>
+          <div class="what-grid">
+            <article class="what-card">
+              <h3 class="what-card-title">Automatyzować z agentami AI</h3>
+              <p class="what-card-text">Od planowania po realizację — nasze agentowe workflowy wykonują zadania kompleksowo. Aktualizują zgłoszenia, rekordy i zamówienia, a tam gdzie to potrzebne, w proces włącza się człowiek.</p>
+            </article>
+            <article class="what-card">
+              <h3 class="what-card-title">Integrować z Twoim ekosystemem</h3>
+              <p class="what-card-text">Nasi agenci łączą się z Twoimi systemami i narzędziami - od CRM i ERP po API i webhooki. Pracują bezpiecznie, z pełnymi audytami i kontrolą dostępu, wykonując realne zadania zamiast tylko odpowiadać.</p>
+            </article>
+            <article class="what-card">
+              <h3 class="what-card-title">Tworzyć boty i czaty, które które "robią robtę"</h3>
+              <p class="what-card-text">Na stronie, w aplikacji, mailu czy komunikatorach - nasze boty i czaty wykonują realne zadania. Odpowiadają na pytania klientów, sięgają po dane z Twoich systemów, generują tickety i aktualizują rekordy - wszystko zgodnie z politykami i z pełną ścieżką audytu.</p>
+            </article>
+            <article class="what-card">
+              <h3 class="what-card-title">Zamienić dokumenty w inteligentną bazę wiedzy</h3>
+              <p class="what-card-text">Przekształć swoje materiały w aktywną bazę wiedzy RAG. Agenci AI tworzą raporty i treści z Twoich dokumentów, prezentacji i wiki, a tam gdzie to możliwe - edytują dane przez API.</p>
+            </article>
+            <article class="what-card">
+              <h3 class="what-card-title">Analizować głosy klientów w każdym kanale</h3>
+              <p class="what-card-text">Zrozum emocje i potrzeby klientów na dużą skalę. Analizujemy e-maile, czaty i media społecznościowe, by wykrywać nastroje, intencje i ryzyka - a następnie przekazujemy sprawy do ludzi lub agentów, którzy reagują najlepiej.</p>
+            </article>
+            <article class="what-card">
+              <h3 class="what-card-title">Dostarczyć Headless UI dla kopilota</h3>
+              <p class="what-card-text">Dostarczamy gotowe komponenty React, które łatwo osadzisz w swojej aplikacji — od czatu po formularze i interfejsy zadań. Zachowujesz pełną kontrolę nad brandingiem i UX.</p>
+            </article>
+            <article class="what-card">
+              <h3 class="what-card-title">Zadbać o wysoką jakość danych</h3>
+              <p class="what-card-text">Przygotowujemy dane do inteligentnych działań: oczyszczamy je, ukrywamy dane osobowe, mapujemy schematy i dbamy o spójność. Dzięki temu agenci AI mogą wnioskować, wyszukiwać i działać bezbłędnie.</p>
+            </article>
+            <article class="what-card">
+              <h3 class="what-card-title">Twoje wyzwanie. Nasze rozwiązanie</h3>
+              <p class="what-card-text">Masz trudny problem? Jeżeli można go opisać i wiesz, jak działać — zbudujemy rozwiązanie. Workflows, boty, MCP, headless UI — cały pakiet. Ty przynosisz cel i wyzwanie, my dostarczamy rozwiązanie.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    <!-- Why Choose Us + User Success Story -->
+    <section id="why-choose-us" class="why-choose-us section" aria-label="Why Choose Us and User Success Story">
+      <div class="container">
+        <h2>Dlaczego my?</h2>
+        <div class="why-content-row">
+
+          <!-- Features Column -->
+          <div class="why">
+            <div class="features">
+              <article class="feature-card">
+                <div class="feature-card-icon icon icon--bulb"></div>
+                <div>
+                  <h3 class="feature-card-title">Jesteśmy ekspertami od inteligentnych systemów</h3>
+                  <p class="feature-card-text">Doświadczenie zdobyte w różnych branżach — agentowe workflowy, kopiloty i inteligentne systemy. Stawiamy na architekturę, integracje i efekty, które naprawdę mają znaczenie.</p>
+                </div>
+              </article>
+              <article class="feature-card">
+                <div class="feature-card-icon icon icon--bolt"></div>
+                <div>
+                  <h3 class="feature-card-title">Działamy bardzo szybko</h3>
+                  <p class="feature-card-text">W ciągu kilku tygodni tworzymy działające rozwiązanie. Dodajemy SLO, analitykę i przekazujemy gotowe rozwiązanie w uporządkowany sposób — tak, by Twój zespół mógł je obsługiwać, mierzyć efekty i skalować.</p>
+                </div>
+              </article>
+              <article class="feature-card">
+                <div class="feature-card-icon icon icon--shield"></div>
+                <div>
+                  <h3 class="feature-card-title">Traktujemy Security & Compliance na poważnie</h3>
+                  <p class="feature-card-text">Bezpieczeństwo klasy produkcyjnej: najmniejsze możliwe uprawnienia, sandboxowane działania, audyty, limity zapytań i weryfikacje zgodności z politykami. Twoje dane i procesy są pod pełną kontrolą.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Testimonial Column -->
+          <div class="testimonial">
+            <img src="../assets/found_lady.png" alt="User success portrait" loading="lazy" decoding="async">
+            <blockquote>
+              "SBAI to praktyka AI prowadzona przez Kubę Parola: enterprise architecture, doświadczenie SaaS i hands-on delivery systemów AI działających w produkcji."
+            </blockquote>
+            <p class="author">— Jakub Maksymilian Parol, Prezes Zarządu</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Stack Carousel -->
+      <section id="technology" class="tech section" aria-label="Our Technology Stack">
+        <div class="container">
+          <header class="section-header">
+            <h2>Nasz stack technologiczny</h2>
+            <p class="section-intro">Budujemy w oparciu o nowoczesne, produkcyjne narzędzia AI i deweloperskie.</p>
+          </header>
+          <div class="tech-marquee">
+            <ul class="tech-track" role="list">
+              <li role="listitem"><article class="tech-card">OpenAI</article></li>
+              <li role="listitem"><article class="tech-card">Claude</article></li>
+              <li role="listitem"><article class="tech-card">LangGraph</article></li>
+              <li role="listitem"><article class="tech-card">CopilotKit</article></li>
+              <li role="listitem"><article class="tech-card">Python</article></li>
+              <li role="listitem"><article class="tech-card">React</article></li>
+              <li role="listitem"><article class="tech-card">MCP</article></li>
+              <li role="listitem"><article class="tech-card">Postgres</article></li>
+              <li role="listitem"><article class="tech-card">Azure</article></li>
+              <!-- duplicate for seamless loop -->
+              <li role="listitem" aria-hidden="true"><article class="tech-card">OpenAI</article></li>
+              <li role="listitem" aria-hidden="true"><article class="tech-card">Claude</article></li>
+              <li role="listitem" aria-hidden="true"><article class="tech-card">LangGraph</article></li>
+              <li role="listitem" aria-hidden="true"><article class="tech-card">CopilotKit</article></li>
+              <li role="listitem" aria-hidden="true"><article class="tech-card">Python</article></li>
+              <li role="listitem" aria-hidden="true"><article class="tech-card">React</article></li>
+              <li role="listitem" aria-hidden="true"><article class="tech-card">MCP</article></li>
+              <li role="listitem" aria-hidden="true"><article class="tech-card">Postgres</article></li>
+              <li role="listitem" aria-hidden="true"><article class="tech-card">Azure</article></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact section" aria-label="Contact SBAI">
+      <div class="container">
+        <h2 class="section-title">Skontaktuj się z nami</h2>
+        <div class="contact-content-row">
+
+          <!-- Left Column -->
+          <div class="contact-info">
+            <div class="contact-cards">
+              <article class="contact-card">
+                <div class="contact-card-icon icon icon--phone"></div>
+                <div>
+                  <h3 class="contact-card-title">Telefon</h3>
+                  <p class="contact-card-text"><a href="tel:+48790471396">+48 790 471-396</a></p>
+                </div>
+              </article>
+              <article class="contact-card">
+                <div class="contact-card-icon icon icon--mail"></div>
+                <div>
+                  <h3 class="contact-card-title">E-mail</h3>
+                  <p class="contact-card-text"><a href="mailto:info@sbai.pl">info@sbai.pl</a></p>
+                </div>
+              </article>
+              <article class="contact-card">
+                <div class="contact-card-icon icon icon--map"></div>
+                <div>
+                  <h3 class="contact-card-title">Adres</h3>
+                  <p class="contact-card-text">Stefana Batorego 18/108<br>02-591 Warszawa</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="contact-form">
+            <form id="contact-form"
+                  action="mailto:info@sbai.pl?subject=Nowe%20zg%C5%82oszenie%20z%20formularza%20SBAI%20(PL)"
+                  method="post"
+                  enctype="text/plain"
+                  novalidate>
+
+              <p class="form-alert" data-error-summary hidden role="alert" aria-live="assertive"></p>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="first-name">Imię <span class="required-indicator">*</span><span class="sr-only"> (wymagane)</span></label>
+                  <input id="first-name" name="firstName" type="text" autocomplete="given-name" required data-label="Imię" aria-describedby="first-name-error">
+                  <p class="form-error" id="first-name-error" hidden></p>
+                </div>
+                <div class="form-field">
+                  <label for="last-name">Nazwisko <span class="required-indicator">*</span><span class="sr-only"> (wymagane)</span></label>
+                  <input id="last-name" name="lastName" type="text" autocomplete="family-name" required data-label="Nazwisko" aria-describedby="last-name-error">
+                  <p class="form-error" id="last-name-error" hidden></p>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="email">E-mail <span class="required-indicator">*</span><span class="sr-only"> (wymagane)</span></label>
+                  <input id="email" name="email" type="email" autocomplete="email" required data-label="E-mail" aria-describedby="email-error">
+                  <p class="form-error" id="email-error" hidden></p>
+                </div>
+                <div class="form-field">
+                  <label for="company">Firma</label>
+                  <input id="company" name="company" type="text" autocomplete="organization" data-label="Firma">
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="message">Twoja wiadomość <span class="required-indicator">*</span><span class="sr-only"> (wymagane)</span></label>
+                <textarea id="message" name="message" rows="4" required data-label="Twoja wiadomość" aria-describedby="message-error"></textarea>
+                <p class="form-error" id="message-error" hidden></p>
+              </div>
+
+              <div style="display:none!important" aria-hidden="true">
+                <label>Do not fill<input name="_gotcha" type="text" tabindex="-1" autocomplete="off"></label>
+              </div>
+
+              <!-- hidden helper fields (ustawione zgodnie z data-lang="pl") -->
+              <input type="hidden" name="_language" value="pl">
+              <input type="hidden" name="_subject" value="Nowe zgłoszenie z formularza SBAI (PL)">
+              <input type="hidden" name="_captcha" value="false">
+
+              <div class="checkbox">
+                <input type="checkbox" id="privacy" name="privacy" value="agreed" required aria-describedby="privacy-error privacy-help" data-label="Zgoda na politykę prywatności">
+                <label for="privacy">Zapoznałem(-am) się z polityką prywatności</a> i wyrażam zgodę na przetwarzanie moich danych w celu kontaktu.</label>
+                <p id="privacy-help" class="sr-only">Pole wymagane do wysłania wiadomości.</p>
+                <p class="form-error" id="privacy-error" hidden></p>
+              </div>
+
+              <button type="submit" class="button-primary" aria-live="polite">Poproś o konsultację</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <div class="footer-col footer-col--brand">
+          <div class="footer-logo">
+            <img src="../assets/sbai_logo.svg" alt="SBAI logo" class="brand-logo" />
+          </div>
+          <p class="footer-tagline">Smart Business AI</p>
+        </div>
+        <div class="footer-col footer-col--links">
+          <h4 class="footer-heading">Szybkie linki</h4>
+          <ul class="footer-list">
+            <li><a href="#what-we-do">Co robimy</a></li>
+            <li><a href="#why-choose-us">Dlaczego my</a></li>
+            <li><a href="#technology">Technologia</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-col--contact">
+          <h4 class="footer-heading">Kontakt</h4>
+          <div class="footer-contact-grid">
+            <div class="footer-contact-block">
+              <address class="footer-address">
+                <div class="street">Stefana Batorego 18/108,</div>
+                <div>02-591 Warszawa</div>
+                <div class="footer-meta-item">NIP: 7011312445</div>
+                <div class="footer-meta-item">KRS: 0001239481</div>
+                <div class="footer-meta-item">REGON: 544648949</div>
+              </address>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <noscript>Ta strona działa najlepiej z włączoną obsługą JavaScript.</noscript>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>
