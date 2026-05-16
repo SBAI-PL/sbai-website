@@ -22,7 +22,7 @@ const content = {
     langLabel: "EN",
     hero: {
       eyebrow: "SBAI · Kuba Parol",
-      title: ["AI, które działa.", "Zespół, który umie."],
+      title: ["AI, które działa.", "Zespół, który potrafi."],
       lead:
         "Doradzam i wdrażam production AI dla firm 30-300 osób. Zostawiam zespół, który wie, jak rozwijać je dalej - beze mnie.",
       primary: "Porozmawiajmy 30 min",
