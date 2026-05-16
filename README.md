@@ -1,38 +1,41 @@
 # SBAI — sbai.pl
 
-Robocza strona firmowa **SBAI sp. z o.o.**.
+Strona firmowa **SBAI sp. z o.o.** zbudowana w Next.js jako statyczny export pod GitHub Pages.
 
-Aktualny stan to statyczna strona zbudowana na bazie poprzedniego statycznego landing page'a, po pierwszej podmianie brandingu i danych rejestrowych na SBAI.
+Treści i architektura informacji są prowadzone przez [`content-strategy.md`](content-strategy.md).
 
 ## Struktura
 
 ```
 .
-├── index.html                  # EN homepage
-├── pl/index.html               # PL homepage
-├── styles.css                  # global styles
-├── script.js                   # navigation / language / UI behavior
-├── assets/                     # copied visual assets
+├── src/app/                    # Next.js App Router
+├── public/                     # statyczne assety i CNAME dla GitHub Pages
 ├── docs/                       # copied specs, partially rebranded
 ├── content-strategy.md         # SBAI content strategy
-└── CNAME                       # sbai.pl
+├── .github/workflows/pages.yml # build + deploy GitHub Pages
+└── CNAME                       # www.sbai.pl
 ```
 
-## Local Preview
-
-Serve from the repo root so absolute paths like `/static/js/contact-form.js` work:
+## Local Development
 
 ```bash
-python3 -m http.server 8000
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:8000/`.
+Then open `http://localhost:3000/`.
 
-## Rebrand Checklist
+## Static Build
 
-- [x] Replace inherited domain references with `sbai.pl`
-- [x] Replace logo with simple SBAI wordmark
-- [x] Replace company name, tagline, email, NIP/KRS/REGON
-- [x] Remove inherited form endpoint and use `mailto:info@sbai.pl`
-- [ ] Align EN/PL copy with `content-strategy.md`
-- [ ] Review `docs/` and remove or rewrite inherited specs
+```bash
+npm run lint
+npm run build
+```
+
+Next.js exports the site to `out/`. The GitHub Pages workflow deploys that directory and keeps the custom domain from `public/CNAME`.
+
+## Routes
+
+- `/` — Polish landing page
+- `/pl/` — Polish alias
+- `/en/` — English landing page

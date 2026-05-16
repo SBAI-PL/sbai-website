@@ -124,7 +124,7 @@ Tracking: display weights `-0.04em` (tight), body `-0.01em`, mono `+0.08em` uppe
 [eyebrow, mono]   SBAI · KUBA PAROL
 
 [h1, display-xl]  AI, które działa.
-                  Zespół, który umie.
+                  Zespół, który potrafi.
 
 [sub, body-l]     Doradzam i wdrażam production AI dla firm 30–300 osób.
                   Zostawiam zespół, który wie, jak rozwijać je dalej —
