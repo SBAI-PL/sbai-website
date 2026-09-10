@@ -1,0 +1,3 @@
+# Preserve exported vector documents byte-for-byte and omit textual diffs.
+*.pdf binary
+*.eps binary

@@ -1,0 +1,99 @@
+SBAI - BRAND PACKAGE / LOGO + FAVICON
+Wersja 1.1 | 10 września 2026
+
+CZTERY WARIANTY
+01_navy_tagline  - granatowe tło, biały znak, biały SMART BUSINESS AI
+02_navy_symbol   - granatowe tło, biały znak, bez podpisu
+03_white_tagline - białe tło, białe litery z cienkim granatowym obrysem,
+                   granatowy SMART BUSINESS AI
+04_white_symbol  - białe tło, białe litery z cienkim granatowym obrysem,
+                   bez podpisu
+W każdej wersji pomarańczowe kwadraty i narożniki są zachowane.
+
+NAJSZYBSZY START
+Podgląd wszystkich wersji: 08_Guide/SBAI_Overview.png
+Instrukcja: 08_Guide/SBAI_Brand_Guide.pdf (7 stron)
+Do edycji w Inkscape: 01_Inkscape_Masters
+Do strony internetowej: 02_SVG_Web albo 06_Transparent/SVG
+Do dokumentów i prezentacji: 05_PNG_Backgrounds albo 06_Transparent/PNG
+Do przygotowania druku: 07_Print_CMYK
+Favicon i ikony: 09_Favicon
+
+ZAWARTOŚĆ
+01_Inkscape_Masters - 4 źródłowe SVG z nazwanymi warstwami.
+02_SVG_Web         - 4 SVG z gotowymi krzywymi, z tłem.
+03_PDF_RGB         - 4 wektorowe PDF RGB, z tłem.
+04_EPS_Vector      - 4 wektorowe EPS RGB, z tłem.
+05_PNG_Backgrounds - 12 PNG z tłem: 512, 2048 i 4096 px szerokości.
+06_Transparent    - 4 SVG i 12 PNG bez tła w tych samych rozmiarach.
+07_Print_CMYK     - 4 PDF CMYK z osadzonym profilem PSO Coated v3.
+08_Guide          - instrukcja PDF, podgląd SVG/PNG, paleta GPL do Inkscape.
+09_Favicon        - zaakceptowany Punkt w kadrze: SVG, PNG, ICO, PDF i EPS.
+
+KOLORY
+Navy   #001C38 | RGB 0, 28, 56
+Orange #FF6D1F | RGB 255, 109, 31
+White  #FFFFFF | RGB 255, 255, 255
+Paleta została ujednolicona z rastrowego wzoru. Gradient i tekstura referencji
+zostały zastąpione jednolitymi wypełnieniami.
+
+CMYK / PSO Coated v3 / FOGRA51
+Wartości w PDF (w procentach):
+Navy:   C 97,6 / M 69,8 / Y 20,8 / K 70,6
+Orange: C 0    / M 68,2 / Y 90,6 / K 0
+White:  C 0    / M 0    / Y 0    / K 0
+W instrukcji pokazano wartości zaokrąglone.
+Konwersja: sRGB -> PSO Coated v3, kolorymetryczna względna z kompensacją
+punktu czerni. Profil ICC jest osadzony w PDF jako OutputIntent.
+Profil dotyczy papierów powlekanych. Drukarnia dobiera profil dla innych
+podłoży oraz spady i standard PDF/X przy składzie docelowego projektu.
+Pliki logo nie są gotowymi projektami wizytówki, ulotki itp.
+Źródło profilu i warunki: https://registry.color.org/profile-registry/PSOcoated_v3
+Profil pobrany z ECI: https://eci.org/lib/exe/pso-coated_v3.zip
+
+EDYCJA I SKALOWANIE
+- Wszystkie napisy są krzywymi; instalowanie fontów nie jest wymagane.
+- Źródłowe SVG mają edytowalny obrys 2 jednostki; w eksportach został
+  zamieniony na wypełnione krzywe, aby zachował proporcje przy skalowaniu.
+- Tło jest osobną warstwą. Gotowe wersje transparentne mają przezroczyste
+  tło i światła liter; białe wypełnienia samych liter pozostają białe.
+- Transparentne pliki navy są przeznaczone na ciemne tło; white na biel.
+- Pole ochronne: 80 jednostek wokół logo o szerokości 800 jednostek.
+  W plikach ze znakiem i podpisem plansza ma 960 x 496 jednostek;
+  bez podpisu ma 960 x 420. Znak zajmuje 5/6 szerokości obrazu PNG.
+- Źródłowe plansze mają szerokość 240 mm; sam znak ma 200 mm.
+- Zalecane minimum: granat z podpisem 260 px / 50 mm; granat bez podpisu
+  160 px / 25 mm; oba warianty na bieli 400 px / 80 mm.
+- Skaluj proporcjonalnie. Zachowaj oryginalne odstępy i układ elementów.
+
+WERYFIKACJA
+Odtworzono i wyeksportowano znak przy użyciu Inkscape 1.4.4.
+Sprawdzono wygląd wszystkich czterech wariantów w PNG, PDF i EPS.
+SVG i PDF logo nie zawierają bitmap ani tekstów zależnych od fontów.
+Sprawdzono kanał alfa i rozmiary 24 plików PNG logo oraz 24 plików PNG faviconu.
+Sprawdzono profil ICC i kolory CMYK w plikach do druku.
+Plik źródłowy otwarto i sprawdzono również w aplikacji Inkscape.
+SHA256SUMS.txt umożliwia sprawdzenie integralności wszystkich plików.
+
+FAVICON - WERSJA 03 / PUNKT W KADRZE
+Dwa narożniki i centralny pomarańczowy kwadrat. Wektor odtworzony w Inkscape.
+Wariant podstawowy: białe narożniki, granatowe tło, pomarańczowy punkt.
+Wariant na bieli: granatowe narożniki, białe tło, pomarańczowy punkt.
+Dodatkowo oba kolory narożników na przezroczystym tle.
+Siatka: 64 x 64; margines i ramiona po 8, punkt 16 x 16 jednostek.
+W 16 x 16 px daje to ramiona 2 px i punkt 4 x 4 px.
+PNG z tłem: 16, 32, 48, 64, 128, 180, 192, 256, 512 i 1024 px.
+PNG bez tła: 256 i 512 px. Wektory skalują się do dowolnego rozmiaru.
+ICO zawiera osobne eksporty Inkscape 16, 32, 48, 64, 128 i 256 px.
+Favicon PDF i EPS są w RGB; główne logo ma osobne PDF CMYK w 07_Print_CMYK.
+
+OSADZENIE W PROJEKCIE SBAI - WEB PAGE
+Indeks dokumentacji: docs/brand-assets.md
+Pełne pliki: docs/branding/SBAI_Brand_Package
+Pliki używane przez stronę: src/app/icon.svg, src/app/favicon.ico,
+src/app/apple-icon.png. Next.js dodaje ich metadane do wszystkich języków.
+Kontrola: node --test tests/favicon.test.mjs - dwa testy przechodzą.
+Zweryfikowano HTTP i linki ikon na /, /pl/ oraz /en/ w lokalnym next dev.
+Sprawdzono wszystkie sześć rozmiarów ICO i brak rozmycia krawędzi przy 16 px.
+Pełny build i pipeline publikacji nie były uruchamiane w tym etapie.
+Archiwum propozycji: docs/branding/exploration/favicon-concepts.

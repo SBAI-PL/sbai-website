@@ -1,14 +1,43 @@
-.DS_Store
-Thumbs.db
-
+# Dependencies and package-manager logs
+node_modules/
 *.log
 
+# Next.js / generated build output
+/.next/
+/out/
+/dist/
+/build/
+/next-env.d.ts
+*.tsbuildinfo
+
+# Local generation, design explorations and export archives
+/output/
+/tmp/
+/temp/
+/.cache/
+/docs/branding/exploration/
+/docs/branding/*.zip
+
+# Test artifacts
+/coverage/
+/.nyc_output/
+/playwright-report/
+/test-results/
+/blob-report/
+
+# Local secrets; commit only example templates
 .env
 .env.*
+!.env.example
+!.env.*.example
+!.env.sample
 
-node_modules/
-dist/
-build/
-out/
-.next/
-*.tsbuildinfo
+# OS and editor scratch files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.history/
+*.swp
+*.swo
+*~
+*.bak

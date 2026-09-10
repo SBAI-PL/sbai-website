@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="64"
+   height="64"
+   viewBox="0 0 64 64"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <title
+     id="title1">SBAI - Punkt w kadrze</title>
+  <desc
+     id="desc1">Approved favicon direction 03. 64-unit grid: margins 8, corner thickness 8, central square 16. sRGB navy #001C38, orange #FF6D1F, white #FFFFFF.</desc>
+  <g
+     id="background">
+    <rect
+       id="background-fill"
+       width="64"
+       height="64"
+       fill="#001C38" />
+  </g>
+  <g
+     id="corners"
+     fill="#FFFFFF">
+    <path
+       id="corner-top-left"
+       d="M8 8H40V16H16V40H8Z" />
+    <path
+       id="corner-bottom-right"
+       d="M48 24H56V56H24V48H48Z" />
+  </g>
+  <g
+     id="focus">
+    <path
+       id="focus-point"
+       d="M24 24H40V40H24Z"
+       fill="#FF6D1F" />
+  </g>
+</svg>
